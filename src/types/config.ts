@@ -18,7 +18,7 @@ declare type EntityRelations = {
 export declare type Entity = {
     id: string;
     name?: string;
-}
+};
 
 export class HueLikeLightCardConfig implements HueLikeLightCardConfigInterface {
     private _title?: string;
@@ -263,7 +263,7 @@ export class HueLikeLightCardConfig implements HueLikeLightCardConfigInterface {
                 result.push({ id: e });
             }
             else if (e) {
-                result.push({ id: e.entity ?? "", name: e.name });
+                result.push({ id: e.entity ?? '', name: e.name });
             }
         });
         this._areaEntities && this._areaEntities.forEach(e => {
