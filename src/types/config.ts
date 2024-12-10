@@ -15,6 +15,11 @@ declare type EntityRelations = {
     areaScenes: string[];
 };
 
+export declare type Entity = {
+    id: string;
+    name?: string;
+}
+
 export class HueLikeLightCardConfig implements HueLikeLightCardConfigInterface {
     private _title?: string;
     private _icon?: string;
@@ -190,7 +195,7 @@ export class HueLikeLightCardConfig implements HueLikeLightCardConfigInterface {
     }
 
     public readonly entity?: string;
-    public readonly entities?: string[] | ConfigEntityInterface[];
+    public readonly entities?: ConfigEntityInterface[];
     public readonly area?: string;
     public readonly label?: string;
     public readonly groupEntity?: string;
@@ -249,23 +254,23 @@ export class HueLikeLightCardConfig implements HueLikeLightCardConfigInterface {
     /**
      * @returns List of unique entity identifiers
      */
-    public getEntities(): string[] {
+    public getEntities(): Entity[] {
         // create list of entities (prepend entity and then insert all entities)
-        const result: string[] = [];
-        this.entity && result.push(this.entity);
+        const result: Entity[] = [];
+        this.entity && result.push({ id: this.entity });
         this.entities && this.entities.forEach(e => {
             if (typeof e == 'string') {
-                result.push(e);
+                result.push({ id: e });
             }
-            else if (e.entity) {
-                result.push(e.entity);
+            else if (e) {
+                result.push({ id: e.entity ?? "", name: e.name });
             }
         });
         this._areaEntities && this._areaEntities.forEach(e => {
-            result.push(e);
+            result.push({ id: e });
         });
         this._labelEntities && this._labelEntities.forEach(e => {
-            result.push(e);
+            result.push({ id: e });
         });
 
         return removeDuplicates(result);
@@ -442,8 +447,8 @@ export class HueLikeLightCardConfig implements HueLikeLightCardConfigInterface {
 
             // get entities, and create ordered list based on order of entities in config
             const entities = this.getEntities();
-            const lightRelations = entities.map(entityId => {
-                return { entityId };
+            const lightRelations = entities.map(entity => {
+                return { entityId: entity.id };
             }) as EntityRelations[];
 
             // load all areas

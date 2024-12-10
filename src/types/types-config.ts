@@ -232,7 +232,7 @@ export class SceneData {
 }
 
 export interface HueLikeLightCardConfigInterface extends ConfigEntityInterface {
-    readonly entities?: string[] | ConfigEntityInterface[];
+    readonly entities?: ConfigEntityInterface[];
     readonly area?: string;
     readonly label?: string;
     readonly groupEntity?: string;
@@ -270,4 +270,5 @@ export interface HueLikeLightCardConfigInterface extends ConfigEntityInterface {
 
 export interface ConfigEntityInterface {
     readonly entity?: string;
+    readonly name?: string;
 }

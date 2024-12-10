@@ -10,6 +10,7 @@ import { IconHelper } from './icon-helper';
 import { localize } from '../localize/localize';
 import { SceneData } from '../types/types-config';
 import { Action2 } from '../types/functions';
+import { Entity } from '../types/config';
 
 /**
  * Serves as a controller for lights in single area.
@@ -23,13 +24,13 @@ export class AreaLightController implements ILightContainer, INotifyGeneric<Ligh
     private _lightsFeatures: LightFeaturesCombined;
     private _defaultColor: Color;
 
-    public constructor(entity_ids: string[], defaultColor: Color, lightGroupEntityId?: string) {
+    public constructor(entity_ids: Entity[], defaultColor: Color, lightGroupEntityId?: string) {
         // we need at least one
         if (!entity_ids.length)
             throw new Error('No entity specified.');
 
         this._defaultColor = defaultColor;
-        this._lights = entity_ids.map(e => GlobalLights.getLightContainer(e));
+        this._lights = entity_ids.map(e => GlobalLights.getLightContainer(e.id));
         this._lightsFeatures = new LightFeaturesCombined(() => this._lights.map(l => l.features));
         if (lightGroupEntityId) {
             this._lightGroup = GlobalLights.getLightContainer(lightGroupEntityId);

@@ -15,16 +15,18 @@ import { LightState } from './light-state';
  */
 export class LightController extends NotifyBase<LightController> implements ISingleLightContainer {
     private _entity_id: string;
+    private _entity_name: string;
     private _hass: HomeAssistant;
     private _entity: HassLightEntity;
     private _entityFeatures: LightFeatures;
 
-    public constructor(entity_id: string) {
+    public constructor(entity_id: string, entity_name: string) {
         super();
 
         ensureEntityDomain(entity_id, 'light');
 
         this._entity_id = entity_id;
+        this._entity_name = entity_name;
         this._lightState = new LightState(<HassLightEntity>{ state: 'unavailable' });
     }
 
@@ -54,8 +56,8 @@ export class LightController extends NotifyBase<LightController> implements ISin
         return this._entity && this._entity.attributes.icon;
     }
 
-    public getTitle() {
-        return new StaticTextTemplate(this._entity.attributes.friendly_name ?? this._entity_id);
+    public getTitle() { // TODO: glaub hier
+        return new StaticTextTemplate(this._entity_name ?? this._entity.attributes.friendly_name ?? this._entity_id);
     }
 
     public getEntityId(): string {
