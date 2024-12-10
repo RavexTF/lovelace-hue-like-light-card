@@ -66,7 +66,7 @@ export class LightController extends NotifyBase<LightController> implements ISin
     }
 
     public getEntities(): Entity[] {
-        return [{ id: this._entity_id, name: this._entity_name }]
+        return [{ id: this._entity_id, name: this._entity_name }];
     }
 
     public get features(): ILightFeatures {
