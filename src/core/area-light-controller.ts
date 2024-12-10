@@ -23,6 +23,7 @@ export class AreaLightController implements ILightContainer, INotifyGeneric<Ligh
     private _lights: LightController[];
     private _lightsFeatures: LightFeaturesCombined;
     private _defaultColor: Color;
+    private _entities: Entity[];
 
     public constructor(entity_ids: Entity[], defaultColor: Color, lightGroupEntityId?: string) {
         // we need at least one
@@ -30,6 +31,7 @@ export class AreaLightController implements ILightContainer, INotifyGeneric<Ligh
             throw new Error('No entity specified.');
 
         this._defaultColor = defaultColor;
+        this._entities = entity_ids;
         this._lights = entity_ids.map(e => GlobalLights.getLightContainer(e.id));
         this._lightsFeatures = new LightFeaturesCombined(() => this._lights.map(l => l.features));
         if (lightGroupEntityId) {
@@ -264,6 +266,10 @@ export class AreaLightController implements ILightContainer, INotifyGeneric<Ligh
 
     public getEntityId(): string {
         throw Error('Cannot get entity id from LightController');
+    }
+
+    public getEntities(): Entity[] {
+        return this._entities;
     }
 
     public get features(): ILightFeatures {
