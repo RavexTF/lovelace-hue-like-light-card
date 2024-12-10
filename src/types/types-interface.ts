@@ -66,11 +66,6 @@ export interface ILightConfig {
     getEntityId(): string;
 
     /**
-     * @returns entities yea
-     */
-    getEntities(): Entity[];
-
-    /**
      * Gets features of lights in this container.
      */
     get features(): ILightFeatures;
