@@ -94,7 +94,7 @@ export class HueLightDetail extends IdLitElement {
             const entities = lights.map(l => {
                 return {
                     id: l.getEntityId()
-                }
+                };
             });
             const controller = new AreaLightController(entities, this.areaController.defaultColor);
             this.lightContainer = controller;

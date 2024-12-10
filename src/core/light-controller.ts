@@ -9,7 +9,6 @@ import { LightFeatures } from './light-features';
 import { NotifyBase } from './notify-base';
 import { SceneData } from '../types/types-config';
 import { LightState } from './light-state';
-import { Entity } from '../types/config';
 
 /**
  * Serves as controller for single light.

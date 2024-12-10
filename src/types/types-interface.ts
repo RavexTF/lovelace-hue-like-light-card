@@ -3,7 +3,6 @@ import { Background } from '../core/colors/background';
 import { Action1, Action2 } from './functions';
 import { Color } from '../core/colors/color';
 import { HassLightColorMode } from './types-hass';
-import { Entity } from './config';
 
 export interface INotify {
     /**
