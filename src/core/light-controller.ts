@@ -9,6 +9,7 @@ import { LightFeatures } from './light-features';
 import { NotifyBase } from './notify-base';
 import { SceneData } from '../types/types-config';
 import { LightState } from './light-state';
+import { Entity } from '../types/config';
 
 /**
  * Serves as controller for single light.
@@ -62,6 +63,10 @@ export class LightController extends NotifyBase<LightController> implements ISin
 
     public getEntityId(): string {
         return this._entity_id;
+    }
+
+    public getEntities(): Entity[] {
+        return [{ id: this._entity_id, name: this._entity_name }]
     }
 
     public get features(): ILightFeatures {
