@@ -3,6 +3,7 @@ import { Background } from '../core/colors/background';
 import { Action1, Action2 } from './functions';
 import { Color } from '../core/colors/color';
 import { HassLightColorMode } from './types-hass';
+import { Entity } from './config';
 
 export interface INotify {
     /**
@@ -63,6 +64,11 @@ export interface ILightConfig {
      * @throws Error when this container contains multiple lights.
      */
     getEntityId(): string;
+
+    /**
+     * @returns entities yea
+     */
+    getEntities(): Entity[];
 
     /**
      * Gets features of lights in this container.
