@@ -20,7 +20,7 @@ export class LightController extends NotifyBase<LightController> implements ISin
     private _entity: HassLightEntity;
     private _entityFeatures: LightFeatures;
 
-    public constructor(entity_id: string, entity_name: string = '') {
+    public constructor(entity_id: string, entity_name: string) {
         super();
 
         ensureEntityDomain(entity_id, 'light');

@@ -10,7 +10,7 @@ export class GlobalLights {
         let instance = GlobalLights._containers[entity_id];
         if (!instance) {
             //console.log(`[GlobalLights] Creating instance for '${entity_id}'`);
-            instance = new LightController(entity_id);
+            instance = new LightController(entity_id, '');
             GlobalLights._containers[entity_id] = instance;
         }
         else {
